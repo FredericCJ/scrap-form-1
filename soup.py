@@ -1,11 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 from scrap import request_handler
+from pprint import pprint
 
 
 def filter_soup(text):
     soup = BeautifulSoup(response.text, "html.parser")
-    through_dom(soup)
+    images = soup.find_all('aside')
+    pprint(images)
 
 
 def through_dom(element: BeautifulSoup, level=0):
@@ -26,5 +28,5 @@ def through_dom(element: BeautifulSoup, level=0):
 if __name__ == "__main__":
     url = "http://books.toscrape.com/"
     response = request_handler(url)
-    if response is not None:
+    if response:
         filter_soup(response.text)
